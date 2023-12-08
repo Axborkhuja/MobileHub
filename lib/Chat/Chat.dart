@@ -22,7 +22,11 @@ class _ChatSupportPageState extends State<ChatSupportPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(color: Colors.white),
+        leading: CircleAvatar(
+          backgroundImage: NetworkImage(
+              'https://img.freepik.com/premium-photo/3d-customer-service-illustration_541443-3551.jpg?w=740'),
+          radius: 20,
+        ),
         title: Text('Support'),
       ),
       body: Column(
