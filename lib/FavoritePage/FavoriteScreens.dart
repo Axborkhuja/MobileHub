@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class FavouritesPage extends StatefulWidget {
-  FavouritesPage({Key? key}) : super(key: key);
+class FavoriteScreens extends StatefulWidget {
+  FavoriteScreens({Key? key}) : super(key: key);
 
   @override
   _FavouritesPageState createState() => _FavouritesPageState();
 }
 
-class _FavouritesPageState extends State<FavouritesPage> {
+class _FavouritesPageState extends State<FavoriteScreens> {
   final List<Map<String, dynamic>> _favourites = [
     {
       'name': 'Product 1',

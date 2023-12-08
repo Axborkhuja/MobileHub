@@ -311,7 +311,7 @@ class SearchScreen extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => MainPage()));
+            context, MaterialPageRoute(builder: (context) => HomeScreen()));
         // Already on Home Screen
         break;
       case 1:
