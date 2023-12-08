@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:test123/FavoritePage/FavoriteScreens.dart';
 import 'package:test123/Profile/ProfileScreens.dart';
-
+import '../components/CardSection.dart';
 import '../SearchPage/SearchScreen.dart';
 
 class MainPage extends StatelessWidget {
@@ -15,12 +15,23 @@ class MainPage extends StatelessWidget {
   final List<Map<String, dynamic>> data = [
     {
       'title': 'Graphic card',
-      'imageUrl': '',
+      'imageUrl':
+      'https://specials-images.forbesimg.com/imageserve/61815758c3bbaa89881e3a1c/Best-Graphics-Card-2021--AMD-RX-6600/960x0.jpg?cropX1=0&cropX2=960&cropY1=0&cropY2=720',
+    },
+    {
+      'title': 'Graphic card',
+      'imageUrl':
+      'https://specials-images.forbesimg.com/imageserve/61815758c3bbaa89881e3a1c/Best-Graphics-Card-2021--AMD-RX-6600/960x0.jpg?cropX1=0&cropX2=960&cropY1=0&cropY2=720',
+    },
+    {
+      'title': 'Graphic card',
+      'imageUrl':
+      'https://specials-images.forbesimg.com/imageserve/61815758c3bbaa89881e3a1c/Best-Graphics-Card-2021--AMD-RX-6600/960x0.jpg?cropX1=0&cropX2=960&cropY1=0&cropY2=720',
     },
     {
       'title': 'Cooling System',
       'imageUrl':
-          'https://voltapc.sg/wp-content/uploads/2023/03/water-cooling-pc-system.webp',
+      'https://voltapc.sg/wp-content/uploads/2023/03/water-cooling-pc-system.webp',
     },
     {
       'title': 'Whole PC',
@@ -51,80 +62,58 @@ class MainPage extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              "New",
-              style: TextStyle(
-                fontSize: 36,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            Center(
-              child: CarouselSlider(
-                items: imageUrls.map((url) {
-                  return Container(
-                    margin: EdgeInsets.all(5.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      image: DecorationImage(
-                        image: NetworkImage(url),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  );
-                }).toList(),
-                options: CarouselOptions(
-                  height: 200.0,
-                  enlargeCenterPage: true,
-                  autoPlay: true,
-                  aspectRatio: 16 / 9,
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enableInfiniteScroll: true,
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  viewportFraction: 0.8,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "New",
+                style: TextStyle(
+                  fontSize: 36,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
-            ),
-            SizedBox(
-              height: 36,
-            ),
-            Text(
-              "Popular",
-              style: TextStyle(
-                fontSize: 36,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  margin: EdgeInsets.all(8.0),
-                  child: Container(
-                    width: 104.0,
-                    height: 148.0,
-                    child: ListTile(
-                      title: Text(data[index]['title']),
-                      leading: Image.network(
-                        data[index]['imageUrl'],
-                        scale: 80.0,
-                        fit: BoxFit.cover,
+              Center(
+                child: CarouselSlider(
+                  items: imageUrls.map((url) {
+                    return Container(
+                      margin: EdgeInsets.all(5.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        image: DecorationImage(
+                          image: NetworkImage(url),
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                    ),
+                    );
+                  }).toList(),
+                  options: CarouselOptions(
+                    height: 200.0,
+                    enlargeCenterPage: true,
+                    autoPlay: true,
+                    aspectRatio: 16 / 9,
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enableInfiniteScroll: true,
+                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    viewportFraction: 0.8,
                   ),
-                );
-              },
-            ),
-          ],
+                ),
+              ),
+              SizedBox(
+                height: 36,
+              ),
+              Center(
+                child: CardSection(data: data),
+              )
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         type:
-            BottomNavigationBarType.fixed, // Ensures fixed layout for all icons
+        BottomNavigationBarType.fixed, // Ensures fixed layout for all icons
         onTap: (index) {
           navigateToScreen(context, index);
         },
@@ -169,7 +158,7 @@ class MainPage extends StatelessWidget {
   void navigateToScreen(BuildContext context, int index) {
     switch (index) {
       case 0:
-        // Already on Home Screen
+      // Already on Home Screen
         break;
       case 1:
         Navigator.pushReplacement(
