@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ProfileScreens extends StatelessWidget {
+class ProductScreens extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
