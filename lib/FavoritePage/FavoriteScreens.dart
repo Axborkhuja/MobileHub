@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test123/HomeScreen/HeaderBar.dart';
+import 'package:test123/Product%20Page/ProductPage.dart';
 
 class FavoriteScreens extends StatefulWidget {
   FavoriteScreens({Key? key}) : super(key: key);
@@ -33,9 +35,7 @@ class _FavouritesPageState extends State<FavoriteScreens> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Favourites'),
-      ),
+      appBar: HeaderBar(),
       body: ListView.builder(
         itemCount: _favourites.length,
         itemBuilder: (context, index) {
@@ -59,7 +59,8 @@ class _FavouritesPageState extends State<FavoriteScreens> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Navigate to product page
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => ProductScreen()));
         },
         child: Icon(Icons.add),
       ),

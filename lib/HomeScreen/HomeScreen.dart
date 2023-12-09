@@ -86,7 +86,6 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-
   void navigateToScreen(BuildContext context, int index) {
     switch (index) {
       case 0:

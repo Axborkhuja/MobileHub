@@ -68,6 +68,7 @@ flutter:
     - assets/Favourite.png
     - assets/HomeIcon.png
     - assets/Profile.png
+    - assets/ProfileMain.png
     - assets/SearchIcon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
