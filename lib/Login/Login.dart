@@ -1,80 +1,96 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
+void main() {
+  runApp(LogInApp());
+}
+
+class LogInApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return MaterialApp(
+      home: Scaffold(
         backgroundColor: Colors.white,
-        title: const Text("Login"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Stack(
-              children: [
-                Container(
-                    width: 300,
-                    height: 47.14814758300781,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Color(0x00f1f1f1))),
-                SizedBox(width: 15,),
-                Center(
-                  child: Text("Password",
-                      style: TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
-                      )),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 150),
+                Text(
+                  'LOG IN',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
                 ),
-                Image.asset(
-                  "Vector28.png",
-                  width: 15,
-                  height: 18.755428314208984,
-                )
-              ],
-            ),
-            Stack(
-              children: [
+                SizedBox(height: 100),
+                TextField(
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.mail),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    hintText: 'Email/Phone number',
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.key),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    hintText: 'Password',
+                  ),
+                ),
+                SizedBox(height: 50),
                 Container(
-                    width: 300,
-                    height: 47.72037887573242,
-                    decoration: BoxDecoration(
+                  width: double.infinity, // <-- Button width here
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child:
+                        Text('Log in', style: TextStyle(color: Colors.black)),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        color: Color(0x00f1f1f1))),
-                Text("Email/Phone number",
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                    )),
-                Image.asset(
-                  "Vector29.png",
-                  width: 15,
-                  height: 8.877551078796387,
-                )
+                        side: BorderSide(width: 2),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Builder(
+                  builder: (context) => TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignUpApp()),
+                      );
+                    },
+                    child:
+                        Text('Sign Up', style: TextStyle(color: Colors.grey)),
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextButton(
+                  onPressed: () {},
+                  child: Text('Use Guest mode',
+                      style: TextStyle(color: Colors.grey)),
+                ),
               ],
             ),
-            Column(
-              children: [
-                Text("Login",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                    ))
-              ],
-            ),
-            Text("Log in",
-                style: TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.w500,
-                )),
-            Text("Use Guest mode",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ))
-          ],
+          ),
         ),
       ),
     );

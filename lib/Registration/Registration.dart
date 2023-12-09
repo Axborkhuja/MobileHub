@@ -1,121 +1,124 @@
 import 'package:flutter/material.dart';
 
-class Registration extends StatelessWidget {
+void main() {
+  runApp(SignUpApp());
+}
+
+class SignUpApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black38,
-        title: const Text("Account"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text("Sign up",
-                style: TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.w500,
-                )),
-            Stack(
-              children: [
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 70),
+                Text(
+                  'SIGN UP',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                SizedBox(width: 10, height: 50),
+                TextField(
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.person),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    hintText: 'Name',
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.mail),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    hintText: 'Email/Phone number',
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.key),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    hintText: 'Password',
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextField(
+                  obscureText: true,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Icon(Icons.remove_red_eye),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    hintText: ' Confirm Password',
+                  ),
+                ),
+                SizedBox(height: 50),
                 Container(
-                    width: 300,
-                    height: 47.72037887573242,
-                    decoration: BoxDecoration(
+                  width: double.infinity, // <-- Button width here
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child:
+                        Text('Sign up', style: TextStyle(color: Colors.black)),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        color: Color(0x00f1f1f1))),
-                Text("Name",
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                    )),
-                Stack(
-                  children: [
-                    Image.asset(
-                      "assets/user 1.png",
-                      width: 20,
-                      height: 20.662626266479492,
-                    )
-                  ],
-                )
+                        side: BorderSide(width: 2),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Builder(
+                  builder: (context) => TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LogInApp()),
+                      );
+                    },
+                    child: Text('Log In', style: TextStyle(color: Colors.grey)),
+                  ),
+                ),
+                SizedBox(height: 10),
+                TextButton(
+                  onPressed: () {},
+                  child: Text('Use Guest mode',
+                      style: TextStyle(color: Colors.grey)),
+                ),
               ],
             ),
-            Stack(
-              children: [
-                Container(
-                    width: 300,
-                    height: 47.72037887573242,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Color(0x00f1f1f1))),
-                Text("Email/Phone number",
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                    )),
-                Image.asset(
-                  "assets/Vector 29.png",
-                  width: 15,
-                  height: 8.877551078796387,
-                )
-              ],
-            ),
-            Stack(
-              children: [
-                Container(
-                    width: 300,
-                    height: 47.14814758300781,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Color(0x00f1f1f1))),
-                Text("Password",
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                    )),
-                Image.asset(
-                  "assets/Vector 28.png",
-                  width: 15,
-                  height: 18.755428314208984,
-                )
-              ],
-            ),
-            Stack(
-              children: [
-                Container(
-                    width: 300,
-                    height: 47.14814758300781,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Color(0x00f1f1f1))),
-                Text("Confirm Password",
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                    )),
-                Image.asset(
-                  "assets/Vector 28.png",
-                  width: 15,
-                  height: 18.755428314208984,
-                )
-              ],
-            ),
-            Column(
-              children: [
-                Text("sign up",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w700,
-                    ))
-              ],
-            ),
-            Text("Use Guest mode",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ))
-          ],
+          ),
         ),
       ),
     );
