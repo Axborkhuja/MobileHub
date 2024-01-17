@@ -54,7 +54,7 @@ class Body extends StatelessWidget {
               height: 36,
             ),
             Center(
-              child: CardSection(data: data),
+              child: CardSection(data: data,title: "Popular"),
             )
           ],
         ),

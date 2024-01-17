@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../FavoritePage/FavoriteScreens.dart';
-import '../Profile/ProfileScreens.dart';
-import '../SearchPage/SearchScreen.dart';
+import '../Favorites/Screen.dart';
+import '../Profile/Screen.dart';
+import '../Search/Screen.dart';
 
 class BottomBar extends StatelessWidget implements PreferredSizeWidget {
   @override

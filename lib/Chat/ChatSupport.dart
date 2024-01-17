@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import '../FavoritePage/FavoriteScreens.dart';
-import '../SearchPage/SearchScreen.dart';
-import './HeaderBar.dart';
+import './Header.dart';
 import './Body.dart';
 
 

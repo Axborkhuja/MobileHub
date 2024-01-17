@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HeaderBar extends StatelessWidget implements PreferredSizeWidget {
+class Header extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(

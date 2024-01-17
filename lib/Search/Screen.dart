@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:test123/FavoritePage/FavoriteScreens.dart';
-import 'package:test123/Profile/ProfileScreens.dart';
-import '../components/CardSection.dart';
-import '../HomeScreen/HomeScreen.dart';
+import 'package:test123/Favorites/Screen.dart';
+import 'package:test123/Profile/Screen.dart';
+import '../Home/Screen.dart';
 
 class SearchScreen extends StatelessWidget {
   final List<String> imageUrls = [

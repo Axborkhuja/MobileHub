@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:test123/Login/Login.dart';
+
+import '../Registration/Screen.dart';
 
 void main() {
-  runApp(SignUpApp());
+  runApp(LoginScreen());
 }
 
-class SignUpApp extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,30 +18,16 @@ class SignUpApp extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 70),
+                SizedBox(height: 150),
                 Text(
-                  'SIGN UP',
+                  'LOG IN',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(width: 10, height: 50),
-                TextField(
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(Icons.person),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    hintText: 'Name',
-                  ),
-                ),
-                SizedBox(height: 10),
+                SizedBox(height: 100),
                 TextField(
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
@@ -68,28 +55,13 @@ class SignUpApp extends StatelessWidget {
                     hintText: 'Password',
                   ),
                 ),
-                SizedBox(height: 10),
-                TextField(
-                  obscureText: true,
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(Icons.remove_red_eye),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    hintText: ' Confirm Password',
-                  ),
-                ),
                 SizedBox(height: 50),
                 Container(
                   width: double.infinity, // <-- Button width here
                   child: ElevatedButton(
                     onPressed: () {},
                     child:
-                        Text('Sign up', style: TextStyle(color: Colors.black)),
+                        Text('Log in', style: TextStyle(color: Colors.black)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
@@ -105,10 +77,11 @@ class SignUpApp extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        MaterialPageRoute(builder: (context) => SignUpApp()),
                       );
                     },
-                    child: Text('Log In', style: TextStyle(color: Colors.grey)),
+                    child:
+                        Text('Sign Up', style: TextStyle(color: Colors.grey)),
                   ),
                 ),
                 SizedBox(height: 10),
