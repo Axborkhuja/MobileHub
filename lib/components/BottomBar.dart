@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../FavoritePage/FavoriteScreens.dart';
-import '../Product Page/ProductPage.dart';
+import '../Profile/ProfileScreens.dart';
 import '../SearchPage/SearchScreen.dart';
 
 class BottomBar extends StatelessWidget implements PreferredSizeWidget {
@@ -47,7 +47,7 @@ class BottomBar extends StatelessWidget implements PreferredSizeWidget {
             label: 'Profile',
           ),
         ],
-      )
+      );
   }
 
   @override

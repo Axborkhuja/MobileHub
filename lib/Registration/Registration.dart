@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test123/Login/Login.dart';
 
 void main() {
   runApp(SignUpApp());
@@ -90,7 +91,7 @@ class SignUpApp extends StatelessWidget {
                     child:
                         Text('Sign up', style: TextStyle(color: Colors.black)),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                      backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                         side: BorderSide(width: 2),
@@ -104,7 +105,7 @@ class SignUpApp extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LogInApp()),
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
                       );
                     },
                     child: Text('Log In', style: TextStyle(color: Colors.grey)),

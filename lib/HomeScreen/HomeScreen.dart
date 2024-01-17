@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test123/HomeScreen/Body.dart';
-import 'package:test123/HomeScreen/BottomBar.dart';
+import 'package:test123/components/BottomBar.dart';
 import 'package:test123/HomeScreen/HeaderBar.dart';
 
 class HomeScreen extends StatelessWidget {

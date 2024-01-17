@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../Registration/Registration.dart';
+
 void main() {
-  runApp(LogInApp());
+  runApp(LoginScreen());
 }
 
-class LogInApp extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -61,7 +63,7 @@ class LogInApp extends StatelessWidget {
                     child:
                         Text('Log in', style: TextStyle(color: Colors.black)),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
+                      backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                         side: BorderSide(width: 2),

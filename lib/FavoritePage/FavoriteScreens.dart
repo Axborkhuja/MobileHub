@@ -60,7 +60,7 @@ class _FavouritesPageState extends State<FavoriteScreens> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => ProductScreen()));
+              context, MaterialPageRoute(builder: (context) => ProductScreens()));
         },
         child: Icon(Icons.add),
       ),
