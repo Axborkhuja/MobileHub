@@ -33,7 +33,7 @@ class _BottomBarState extends State<BottomBar> {
         ),
         BottomNavigationBarItem(
           icon: Image.asset(
-            currentRoute !='/search' ? "assets/SearchActiveIcon.png": "assets/SearchIcon.png",
+            currentRoute !='/search' ? "assets/SearchIcon.png": "assets/SearchActiveIcon.png",
             width: 35,
             height: 35,
           ),

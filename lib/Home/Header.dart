@@ -5,14 +5,23 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
-      title: const Text(
-        'Logo',
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w700,
-        ),
+      title: Center(
+        child:
+        Text(
+          'PC Shop',
+          style: TextStyle(
+            fontSize: 30,  // Increased font size for emphasis
+            fontWeight: FontWeight.w700,
+            letterSpacing: 1.5,  // Adjust letter spacing for a clean look
+            color: Colors.black,  // Use a subtle color like black or grey
+            fontFamily: 'Roboto',  // Choose a clean and modern font
+          ),
+        )
+
       ),
-      actions: [],
+      actions: [
+
+      ],
     );
   }
 
