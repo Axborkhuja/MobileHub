@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test123/components/BottomBar.dart';
 import './Body.dart';
 import './Header.dart';
-import 'package:test123/Products/Screen.dart';
 
 class FavoriteScreens extends StatelessWidget {
   final List<Map<String, dynamic>> favourites = [
@@ -31,13 +31,7 @@ class FavoriteScreens extends StatelessWidget {
     return Scaffold(
       appBar: Header(),
       body: Body(favourites: favourites),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => ProductScreens()));
-        },
-        child: Icon(Icons.add),
-      ),
+      bottomNavigationBar: BottomBar(),
     );
   }
 }

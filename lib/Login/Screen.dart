@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../Registration/Screen.dart';
 
 void main() {
@@ -57,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 50),
                 Container(
-                  width: double.infinity, // <-- Button width here
+                  width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {},
                     child:

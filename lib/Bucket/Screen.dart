@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:test123/components/BottomBar.dart';
 
+class BucketScreen extends StatelessWidget{
 
-class ProfileScreens extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 50.0,
       ),
-      body: Center(),
+      body: Center(
+
+      ),
       bottomNavigationBar: BottomBar(),
     );
   }

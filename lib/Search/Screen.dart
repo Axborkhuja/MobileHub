@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test123/Favorites/Screen.dart';
-import 'package:test123/Profile/Screen.dart';
-import '../Home/Screen.dart';
+import 'package:test123/components/BottomBar.dart';
 
 class SearchScreen extends StatelessWidget {
   final List<String> imageUrls = [
@@ -39,26 +37,6 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const Text(
-          'Logo',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        actions: [
-          Image.asset(
-            "assets/shopping-cart.png",
-            width: 26,
-            height: 24,
-          ),
-          SizedBox(
-            width: 35,
-          ),
-        ],
-      ),
       body: Column(
         children: [
           TextField(
@@ -260,67 +238,7 @@ class SearchScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type:
-            BottomNavigationBarType.fixed, // Ensures fixed layout for all icons
-        onTap: (index) {
-          navigateToScreen(context, index);
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              "assets/HomeIcon.png",
-              width: 35,
-              height: 35,
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              "assets/SearchIcon.png",
-              width: 35,
-              height: 35,
-            ),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              "assets/Favourite.png",
-              width: 35,
-              height: 35,
-            ),
-            label: 'Favorites',
-          ),
-          BottomNavigationBarItem(
-            icon: Image.asset(
-              "assets/Profile.png",
-              width: 35,
-              height: 35,
-            ),
-            label: 'Profile',
-          ),
-        ],
-      ),
+      bottomNavigationBar: BottomBar(),
     );
-  }
-
-  void navigateToScreen(BuildContext context, int index) {
-    switch (index) {
-      case 0:
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomeScreen()));
-        // Already on Home Screen
-        break;
-      case 1:
-        break;
-      case 2:
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => FavoriteScreens()));
-        break;
-      case 3:
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => ProfileScreens()));
-        break;
-    }
   }
 }

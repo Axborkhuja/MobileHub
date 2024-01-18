@@ -28,9 +28,11 @@ class Body extends StatelessWidget {
               child: CarouselSlider(
                 items: imageUrls.map((url) {
                   return Container(
-                    margin: EdgeInsets.all(5.0),
+                    width: MediaQuery.of(context).size.width, // Set width to screen width
+                    height: 200,
+                    margin: EdgeInsets.all(0.0),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(0.0),
                       image: DecorationImage(
                         image: NetworkImage(url),
                         fit: BoxFit.cover,
@@ -46,7 +48,7 @@ class Body extends StatelessWidget {
                   autoPlayCurve: Curves.fastOutSlowIn,
                   enableInfiniteScroll: true,
                   autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  viewportFraction: 0.8,
+                  viewportFraction: 1,
                 ),
               ),
             ),

@@ -12,16 +12,7 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
           fontWeight: FontWeight.w700,
         ),
       ),
-      actions: [
-        Image.asset(
-          "assets/shopping-cart.png",
-          width: 26,
-          height: 24,
-        ),
-        SizedBox(
-          width: 35,
-        ),
-      ],
+      actions: [],
     );
   }
 
