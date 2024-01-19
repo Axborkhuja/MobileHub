@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:test123/components/BottomBar.dart';
+import 'package:test123/Home/Header.dart';
 import './Body.dart';
-import './Header.dart';
 
 class FavoriteScreens extends StatelessWidget {
   final List<Map<String, dynamic>> favourites = [
@@ -31,7 +30,6 @@ class FavoriteScreens extends StatelessWidget {
     return Scaffold(
       appBar: Header(),
       body: Body(favourites: favourites),
-      bottomNavigationBar: BottomBar(),
     );
   }
 }

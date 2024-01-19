@@ -1,80 +1,125 @@
 import 'package:flutter/material.dart';
+import 'package:test123/Bucket/Screen.dart';
+import 'package:test123/Favorites/Screen.dart';
+import 'package:test123/Home/Screen.dart';
+import 'package:test123/Profile/Screen.dart';
+import 'package:test123/Search/Screen.dart';
 
 class BottomBar extends StatefulWidget {
-
   @override
   _BottomBarState createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
-
   int _selectedIndex = 0;
+  PageController _pageController = PageController();
+
   @override
   Widget build(BuildContext context) {
-    String? currentRoute = ModalRoute.of(context)?.settings.name ?? '/';
+    // String? currentRoute = ModalRoute.of(context)?.settings.name ?? '/';
+    Brightness brightness = Theme.of(context).brightness;
 
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      onTap: (index) {
-        setState(() {
-          _selectedIndex = index;
-        });
-        navigateToScreen(context, index);
-      },
-      currentIndex: _selectedIndex,
-      items: [
-        BottomNavigationBarItem(
-          icon: Image.asset(
-            currentRoute !='/' ? "assets/HomeIcon.png": "assets/HomeActiveIcon.png",
-            width: 35,
-            height: 35,
+    return Scaffold(
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+        children: [
+          HomeScreen(), // Home screen
+          SearchScreen(), // Search screen
+          FavoriteScreens(), // Favorites screen
+          BucketScreen(), // Bucket screen
+          ProfileScreens(), // Profile screen
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        onTap: (index) {
+          _pageController.animateToPage(
+            index,
+            duration: Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+        },
+        backgroundColor:
+            brightness == Brightness.dark ? Colors.black12 : Colors.white24,
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue, // Change the color as needed
+        unselectedItemColor: Colors.grey, // Change the color as needed
+        selectedLabelStyle:
+            TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+        unselectedLabelStyle: TextStyle(fontSize: 12),
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_outlined,
+                  size: 40,
+                  color: brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black),
+              label: 'Home',
+            activeIcon: Icon(Icons.home,
+                size: 40,
+                color: brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black),
           ),
-          label: 'Home',
-        ),
-        BottomNavigationBarItem(
-          icon: Image.asset(
-            currentRoute !='/search' ? "assets/SearchIcon.png": "assets/SearchActiveIcon.png",
-            width: 35,
-            height: 35,
+          BottomNavigationBarItem(
+              icon: Icon(Icons.search,
+                  size: 40,
+                  color: brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black),
+              label: 'Search',
+            activeIcon: Icon(Icons.saved_search,
+                size: 40,
+                color: brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black),
           ),
-            label:"Search",
-        ),
-        BottomNavigationBarItem(
-          icon: Image.asset(
-            currentRoute !='/favorites' ? "assets/FavouriteIcon.png": "assets/FavouriteActiveIcon.png",
-            width: 35,
-            height: 35,
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_border,
+                  size: 40,
+                  color: brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black),
+              label: 'Favorites',
+            activeIcon: Icon(Icons.favorite,
+                size: 40,
+                color: brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black),
           ),
-          label: 'Favourite',
-        ),
-        BottomNavigationBarItem(
-          icon: Image.asset(
-            currentRoute !='/bucket' ? "assets/BucketIcon.png": "assets/BucketActiveIcon.png",
-            width: 35,
-            height: 35,
+          BottomNavigationBarItem(
+              icon: Icon(Icons.shopping_basket_outlined,
+                  size: 40,
+                  color: brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black),
+              label: 'Bucket',
+            activeIcon: Icon(Icons.shopping_basket,
+                size: 40,
+                color: brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black),
           ),
-          label: 'Bucket',
-        ),
-        BottomNavigationBarItem(
-          icon: Image.asset(
-            currentRoute !='/profile' ? "assets/ProfileIcon.png": "assets/ProfileActiveIcon.png",
-            width: 35,
-            height: 35,
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle_outlined,
+                  size: 40,
+                  color: brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black),
+              label: 'Profile',
+            activeIcon: Icon(Icons.account_circle,
+                size: 40,
+                color: brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black),
           ),
-          label: 'Profile',
-        ),
-      ],
+        ],
+      ),
     );
   }
-
-  void navigateToScreen(BuildContext context, int index) {
-    switch (index) {
-      case 0:Navigator.pushReplacementNamed(context, '/'); break;
-      case 1:Navigator.pushReplacementNamed(context, '/search');break;
-      case 2:Navigator.pushReplacementNamed(context, '/favorites');break;
-      case 3:Navigator.pushReplacementNamed(context, '/bucket');break;
-      case 4:Navigator.pushReplacementNamed(context, '/profile');break;
-    }
-  }
 }
-

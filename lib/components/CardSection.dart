@@ -12,6 +12,7 @@ class CardSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Brightness brightness = Theme.of(context).brightness;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -21,6 +22,7 @@ class CardSection extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
+                color: brightness!=Brightness.light? Colors.white :Colors.black,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
@@ -57,11 +59,11 @@ class CardSection extends StatelessWidget {
                               child: Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
+                                    topLeft: Radius.circular(5),
+                                    topRight: Radius.circular(5),
                                   ),
                                   image: DecorationImage(
-                                      fit: BoxFit.fill,
+                                      fit: BoxFit.cover,
                                       image: NetworkImage(
                                         data[index]['imageUrl'],
                                       )),
@@ -72,7 +74,7 @@ class CardSection extends StatelessWidget {
                               height: 60,
                               padding: const EdgeInsets.all(8.0),
                               decoration: BoxDecoration(
-                                color: Colors.white,
+                                color: brightness!=Brightness.dark? Colors.white :Colors.black,
                                 borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(10.0),
                                   bottomRight: Radius.circular(10.0),
@@ -84,7 +86,7 @@ class CardSection extends StatelessWidget {
                                   Text(
                                     data[index]['title'],
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: brightness!=Brightness.light? Colors.white : Colors.black,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15,
                                     ),
@@ -95,7 +97,7 @@ class CardSection extends StatelessWidget {
                                   Text(
                                     'There is subtitle',
                                     style: TextStyle(
-                                      color: Colors.black,
+                                      color: brightness!=Brightness.light? Colors.white :Colors.black,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 12,
                                     ),
@@ -135,13 +137,13 @@ class CardSection extends StatelessWidget {
                                 height: 40,
                                 padding: const EdgeInsets.all(8.0),
                                 decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(
-                                      0.4), // Transparent black background
+                                  color: brightness!=Brightness.dark? Colors.white.withOpacity(0.4) :Colors.black.withOpacity(0.4),
+                                  // Transparent black background
                                 ),
                                 child: Text(
                                   data[index]['title'],
                                   style: TextStyle(
-                                    color: Colors.white,
+                                    color: brightness!=Brightness.light? Colors.white :Colors.black,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15,
                                   ),

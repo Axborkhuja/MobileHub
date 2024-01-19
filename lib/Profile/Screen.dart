@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:test123/components/BottomBar.dart';
 
 
 class ProfileScreens extends StatelessWidget {
@@ -10,7 +9,6 @@ class ProfileScreens extends StatelessWidget {
         toolbarHeight: 50.0,
       ),
       body: Center(),
-      bottomNavigationBar: BottomBar(),
     );
   }
 }

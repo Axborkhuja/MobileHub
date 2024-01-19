@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:test123/components/BottomBar.dart';
 
 class BucketScreen extends StatelessWidget{
 
@@ -12,7 +11,6 @@ class BucketScreen extends StatelessWidget{
       body: Center(
 
       ),
-      bottomNavigationBar: BottomBar(),
     );
   }
 }

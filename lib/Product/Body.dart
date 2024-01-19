@@ -1,28 +1,75 @@
 import 'package:flutter/material.dart';
 
-
 class Body extends StatelessWidget {
   final Map<String, dynamic> data;
+
   Body(this.data);
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        Image.network(data['image'], width: 100, height: 100),
-        Text(data['name']),
-        Text('\$${data['price']}'),
-        Text(data['description']),
-        Text(data['specifications']),
-        ElevatedButton(
-          onPressed: () {
-
-          },
-          child: Text('Add to Cart'),
-        ),
-        // Add more widgets for customer reviews, ratings, etc.
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Stack(
+        children: [
+          ListView(
+            children: <Widget>[
+              Image.network(data['imageUrl'], fit: BoxFit.cover),
+              SizedBox(height: 16),
+              Text(
+                data['title'],
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 8),
+              Text(
+                '\$${data['price']}',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.red, // Change the color as needed
+                ),
+              ),
+              SizedBox(height: 8),
+              Text(
+                data['description'],
+                style: TextStyle(fontSize: 16),
+              ),
+              SizedBox(height: 8),
+              Text(
+                data['category'],
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue, // Change the color as needed
+                ),
+              ),
+              SizedBox(height: 16),
+            ],
+          ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Ink(
+                decoration: ShapeDecoration(
+                  color: Colors
+                      .white, // Set the background color to transparent
+                  shape: CircleBorder(),
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.add_shopping_cart_outlined,
+                      size: 30, color: Colors.black),
+                  onPressed: () {
+                    // Add to cart logic
+                  },
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
-

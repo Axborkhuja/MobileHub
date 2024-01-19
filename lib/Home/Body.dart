@@ -20,6 +20,7 @@ class _BodyState extends State<Body> {
   _BodyState({required this.imageUrls, required this.data});
   @override
   Widget build(BuildContext context) {
+    Brightness brightness = Theme.of(context).brightness;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(0.0),
@@ -33,12 +34,13 @@ class _BodyState extends State<Body> {
                   itemBuilder: (context, index, realIndex) {
                     final url = widget.imageUrls[index];
                     double scaleFactor = _currentIndex == index ? 2.0 : 0.9;
-
                     return Container(
                       width: MediaQuery.of(context).size.width * scaleFactor,
                       height: 100,
                       decoration: BoxDecoration(
-                        color:Colors.white70,
+                        color: brightness == Brightness.dark
+                            ? Colors.black
+                            : Colors.white70,
                         backgroundBlendMode: BlendMode.colorBurn,
                         borderRadius: BorderRadius.circular(0.0),
                         image: DecorationImage(
@@ -66,7 +68,7 @@ class _BodyState extends State<Body> {
                 ),
                 Positioned.fill(
                   child: Container(
-                    color: Colors.black.withOpacity(0.2),
+                    color: brightness==Brightness.dark?Colors.white.withOpacity(0.2):Colors.black.withOpacity(0.2),
                   ),
                 ),
                 Positioned(
@@ -77,7 +79,7 @@ class _BodyState extends State<Body> {
                     style: TextStyle(
                       fontSize: 36,
                       fontWeight: FontWeight.w400,
-                      color: Colors.white,
+                      color: brightness==Brightness.dark?Colors.black:Colors.white,
                     ),
                   ),
                 ),
