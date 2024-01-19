@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'MobileHub',
       navigatorKey: navigatorKey,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData.from(
         colorScheme: brightnessValue == Brightness.dark
             ? ColorScheme.dark(
