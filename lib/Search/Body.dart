@@ -34,12 +34,13 @@ class _BodyState extends State<Body> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 40),
+                SizedBox(height: 60),
                 CardSection(
                   data: data,
                   title: "",
                   marginBetween: 1,
                   type: 'search',
+                  axisNum: 3,
                 ),
               ],
             ),

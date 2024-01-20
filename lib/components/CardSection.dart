@@ -1,14 +1,15 @@
-
 import 'package:flutter/material.dart';
 import 'package:test123/Product/Screen.dart';
+import 'package:test123/components/CustomCard.dart';
 
 class CardSection extends StatelessWidget {
   final List<Map<String, dynamic>> data;
   final String title;
   final int? marginBetween;
   final String? type;
+  final int axisNum;
   CardSection(
-      {required this.data, required this.title, this.marginBetween, this.type});
+      {required this.data,this.axisNum=2, required this.title, this.marginBetween, this.type});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,9 @@ class CardSection extends StatelessWidget {
             child: Text(
               title,
               style: TextStyle(
-                color: brightness!=Brightness.light? Colors.white :Colors.black,
+                color: brightness != Brightness.light
+                    ? Colors.white
+                    : Colors.black,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
@@ -30,7 +33,7 @@ class CardSection extends StatelessWidget {
           ),
         ),
         GridView.count(
-          crossAxisCount: 2,
+          crossAxisCount: axisNum,
           mainAxisSpacing: marginBetween?.ceilToDouble() ?? 10.0,
           crossAxisSpacing: marginBetween?.ceilToDouble() ?? 10.0,
           shrinkWrap: true,
@@ -38,123 +41,19 @@ class CardSection extends StatelessWidget {
           children: List.generate(
             data.length,
             (index) => GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductScreen(data[index]),
-                  ),
-                );
-              },
-              child: type == null
-                  ? Card(
-                      margin: EdgeInsets.all(5),
-                      child: Container(
-                        height: 300,
-                        width: 200,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(5),
-                                    topRight: Radius.circular(5),
-                                  ),
-                                  image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                        data[index]['imageUrl'],
-                                      )),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              height: 60,
-                              padding: const EdgeInsets.all(8.0),
-                              decoration: BoxDecoration(
-                                color: brightness!=Brightness.dark? Colors.white :Colors.black,
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(10.0),
-                                  bottomRight: Radius.circular(10.0),
-                                ),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    data[index]['title'],
-                                    style: TextStyle(
-                                      color: brightness!=Brightness.light? Colors.white : Colors.black,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    'There is subtitle',
-                                    style: TextStyle(
-                                      color: brightness!=Brightness.light? Colors.white :Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                  : Card(
-                      margin: EdgeInsets.all(5),
-                      child: Container(
-                        height: 10,
-                        width: 10,
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10),
-                                ),
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: NetworkImage(data[index]['imageUrl']),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              left: 0,
-                              right: 0,
-                              child: Container(
-                                height: 40,
-                                padding: const EdgeInsets.all(8.0),
-                                decoration: BoxDecoration(
-                                  color: brightness!=Brightness.dark? Colors.white.withOpacity(0.4) :Colors.black.withOpacity(0.4),
-                                  // Transparent black background
-                                ),
-                                child: Text(
-                                  data[index]['title'],
-                                  style: TextStyle(
-                                    color: brightness!=Brightness.light? Colors.white :Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductScreen(data[index]),
                     ),
-            ),
+                  );
+                },
+                child: CustomCard(
+                  brightness: brightness,
+                  data: data[index],
+                  type: type,
+                )),
           ),
         ),
       ],
