@@ -48,21 +48,22 @@ class Body extends StatelessWidget {
             ],
           ),
           Positioned(
-            top: 0,
+            bottom: 0,
             right: 0,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(0.0),
               child: Ink(
                 decoration: ShapeDecoration(
-                  color: Colors
-                      .white, // Set the background color to transparent
+                  color: Colors.white,
                   shape: CircleBorder(),
+
                 ),
+                padding: const EdgeInsets.all(8.0),
                 child: IconButton(
                   icon: Icon(Icons.add_shopping_cart_outlined,
-                      size: 30, color: Colors.black),
+                      size: 40, color: Colors.black),
                   onPressed: () {
-                    // Add to cart logic
+
                   },
                 ),
               ),

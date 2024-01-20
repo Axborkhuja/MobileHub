@@ -4,20 +4,18 @@ import 'package:carousel_slider/carousel_slider.dart';
 import '../components/CardSection.dart';
 
 class Body extends StatefulWidget {
-  final List<String> imageUrls;
   final List<Map<String, dynamic>> data;
 
-  Body({required this.imageUrls, required this.data});
+  Body({ required this.data});
 
   @override
-  _BodyState createState() => _BodyState(imageUrls: imageUrls, data: data);
+  _BodyState createState() => _BodyState( data: data);
 }
 
 class _BodyState extends State<Body> {
   int _currentIndex = 0;
-  final List<String> imageUrls;
   final List<Map<String, dynamic>> data;
-  _BodyState({required this.imageUrls, required this.data});
+  _BodyState({required this.data});
   @override
   Widget build(BuildContext context) {
     Brightness brightness = Theme.of(context).brightness;
@@ -30,9 +28,9 @@ class _BodyState extends State<Body> {
             Stack(
               children: [
                 CarouselSlider.builder(
-                  itemCount: widget.imageUrls.length,
+                  itemCount: 6,
                   itemBuilder: (context, index, realIndex) {
-                    final url = widget.imageUrls[index];
+                    final url = widget.data[index]['imageUrl'];
                     double scaleFactor = _currentIndex == index ? 2.0 : 0.9;
                     return Container(
                       width: MediaQuery.of(context).size.width * scaleFactor,

@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:test123/Bucket/Screen.dart';
 import 'package:test123/Home/Screen.dart';
@@ -7,9 +8,19 @@ import 'package:test123/components/BottomBar.dart';
 import 'Favorites/Screen.dart';
 import 'Search/Screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    name: '[DEFAULT]',
+    options: FirebaseOptions(
+    appId: "1:150260257894:android:7935e5337befa506c089a7",
+    messagingSenderId: "150260257894",
+    projectId: "mobileprogramming-23a1c",
+      apiKey: '150260257894',
+  ),);
+  runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../CRUD/getProducts.dart';
 import './Body.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -9,7 +10,12 @@ class SearchScreen extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: 0,
       ),
-      body: Body(),
+      body: GetProducts(
+        collectionName: 'products',
+        buildUI: (List<Map<String, dynamic>> data) {
+          return Body(data: data);
+        },
+      ),
     );
   }
 }

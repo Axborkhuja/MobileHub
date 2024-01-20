@@ -3,137 +3,23 @@ import 'package:test123/components/CardSection.dart';
 import '../components/Category.dart';
 
 class Body extends StatefulWidget {
+  final List<Map<String, dynamic>> data;
+  Body({required this.data});
   @override
-  _BodyState createState() => _BodyState();
+  _BodyState createState() => _BodyState(data: data);
 }
 
 class _BodyState extends State<Body> {
-  List<Map<String, dynamic>> data = [
-    {
-      "id": 1,
-      "title": "Graphic card",
-      "imageUrl":
-      "https://specials-images.forbesimg.com/imageserve/61815758c3bbaa89881e3a1c/Best-Graphics-Card-2021--AMD-RX-6600/960x0.jpg?cropX1=0&cropX2=960&cropY1=0&cropY2=720",
-      "price": 399.99,
-      "description":
-      "High-performance graphics card for gaming and content creation.",
-      "category": "Hardware"
-    },
-    {
-      "id": 2,
-      "title": "Graphic card",
-      "imageUrl":
-      "https://specials-images.forbesimg.com/imageserve/61815758c3bbaa89881e3a1c/Best-Graphics-Card-2021--AMD-RX-6600/960x0.jpg?cropX1=0&cropX2=960&cropY1=0&cropY2=720",
-      "price": 449.99,
-      "description":
-      "Advanced graphics card with cutting-edge features and performance.",
-      "category": "Hardware"
-    },
-    {
-      "id": 3,
-      "title": "Graphic card",
-      "imageUrl":
-      "https://specials-images.forbesimg.com/imageserve/61815758c3bbaa89881e3a1c/Best-Graphics-Card-2021--AMD-RX-6600/960x0.jpg?cropX1=0&cropX2=960&cropY1=0&cropY2=720",
-      "price": 499.99,
-      "description":
-      "Top-of-the-line graphics card for enthusiasts and professionals.",
-      "category": "Hardware"
-    },
-    {
-      "id": 4,
-      "title": "Cooling System",
-      "imageUrl":
-      "https://voltapc.sg/wp-content/uploads/2023/03/water-cooling-pc-system.webp",
-      "price": 89.99,
-      "description":
-      "Efficient liquid cooling system to maintain optimal temperatures for your PC components.",
-      "category": "Hardware"
-    },
-    {
-      "id": 5,
-      "title": "Whole PC",
-      "imageUrl": "https://i.redd.it/2rjggvtzqn751.jpg",
-      "price": 1499.99,
-      "description":
-      "Complete gaming PC package with high-end components for an immersive experience.",
-      "category": "Hardware"
-    },
-    {
-      "id": 6,
-      "title": "PC is my world",
-      "imageUrl": "https://i.redd.it/2rjggvtzqn751.jpg",
-      "price": 999.99,
-      "description":
-      "Customizable PC with powerful hardware, perfect for gaming and professional use.",
-      "category": "Hardware"
-    },
-    {
-      "id": 7,
-      "title": "Graphic card",
-      "imageUrl":
-      "https://specials-images.forbesimg.com/imageserve/61815758c3bbaa89881e3a1c/Best-Graphics-Card-2021--AMD-RX-6600/960x0.jpg?cropX1=0&cropX2=960&cropY1=0&cropY2=720",
-      "price": 399.99,
-      "description":
-      "High-performance graphics card for gaming and content creation.",
-      "category": "Hardware"
-    },
-    {
-      "id": 8,
-      "title": "Graphic card",
-      "imageUrl":
-      "https://specials-images.forbesimg.com/imageserve/61815758c3bbaa89881e3a1c/Best-Graphics-Card-2021--AMD-RX-6600/960x0.jpg?cropX1=0&cropX2=960&cropY1=0&cropY2=720",
-      "price": 449.99,
-      "description":
-      "Advanced graphics card with cutting-edge features and performance.",
-      "category": "Hardware"
-    },
-    {
-      "id": 9,
-      "title": "Graphic card",
-      "imageUrl":
-      "https://specials-images.forbesimg.com/imageserve/61815758c3bbaa89881e3a1c/Best-Graphics-Card-2021--AMD-RX-6600/960x0.jpg?cropX1=0&cropX2=960&cropY1=0&cropY2=720",
-      "price": 499.99,
-      "description":
-      "Top-of-the-line graphics card for enthusiasts and professionals.",
-      "category": "Hardware"
-    },
-    {
-      "id": 10,
-      "title": "Cooling System",
-      "imageUrl":
-      "https://voltapc.sg/wp-content/uploads/2023/03/water-cooling-pc-system.webp",
-      "price": 89.99,
-      "description":
-      "Efficient liquid cooling system to maintain optimal temperatures for your PC components.",
-      "category": "Hardware"
-    },
-    {
-      "id": 11,
-      "title": "Whole PC",
-      "imageUrl": "https://i.redd.it/2rjggvtzqn751.jpg",
-      "price": 1499.99,
-      "description":
-      "Complete gaming PC package with high-end components for an immersive experience.",
-      "category": "Hardware"
-    },
-    {
-      "id": 12,
-      "title": "PC is my world",
-      "imageUrl": "https://i.redd.it/2rjggvtzqn751.jpg",
-      "price": 999.99,
-      "description":
-      "Customizable PC with powerful hardware, perfect for gaming and professional use.",
-      "category": "Hardware"
-    }
-  ];
-
+  List<Map<String, dynamic>> data;
+  _BodyState({required this.data});
   List<Map<String, dynamic>> filteredData = [];
 
   void updateData(String category) {
     filteredData = data.where((element) {
-      return element['category'] == category;
+      return element == 'category';
     }).toList();
     setState(() {}); // Trigger a rebuild with the updated data
+    print(filteredData);
   }
 
   @override
@@ -165,7 +51,8 @@ class _BodyState extends State<Body> {
           right: 0,
           child: Container(
             decoration: BoxDecoration(
-              color: brightness == Brightness.dark ? Colors.black : Colors.white,
+              color:
+                  brightness == Brightness.dark ? Colors.black : Colors.white,
               border: Border.all(color: Colors.white12),
             ),
             padding: EdgeInsets.symmetric(horizontal: 8),
@@ -175,7 +62,9 @@ class _BodyState extends State<Body> {
                   children: [
                     Icon(
                       Icons.search_outlined,
-                      color: brightness == Brightness.dark ? Colors.white30 : Colors.black38,
+                      color: brightness == Brightness.dark
+                          ? Colors.white30
+                          : Colors.black38,
                     ),
                     SizedBox(width: 8),
                     Expanded(
@@ -190,25 +79,25 @@ class _BodyState extends State<Body> {
                   ],
                 ),
                 Divider(
-                  color: brightness==Brightness.dark?Colors.white.withOpacity(0.4):Colors.black.withOpacity(0.4),
+                  color: brightness == Brightness.dark
+                      ? Colors.white.withOpacity(0.4)
+                      : Colors.black.withOpacity(0.4),
                   thickness: 2.0,
                 ),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
-                    children: [
-                      Category(categoryName: 'Technology', onTap: updateData),
-                      Category(categoryName: 'Technology', onTap: updateData),
-                      Category(categoryName: 'Technology', onTap: updateData),
-                      Category(categoryName: 'Technology', onTap: updateData),
-                      Category(categoryName: 'Technology', onTap: updateData),
-                      Category(categoryName: 'Technology', onTap: updateData),
-                      Category(categoryName: 'Technology', onTap: updateData),
-                      Category(categoryName: 'Technology', onTap: updateData),
-                    ],
+                    children: data
+                        .map((item) => Category(
+                              categoryName: item['category'],
+                              onTap: updateData,
+                            ))
+                        .toList(),
                   ),
                 ),
-                SizedBox(height: 2,)
+                SizedBox(
+                  height: 2,
+                )
               ],
             ),
           ),
