@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "150260257894",
+    "firebase_url": "https://mobileprogramming-23a1c-default-rtdb.firebaseio.com",
+    "project_id": "mobileprogramming-23a1c",
+    "storage_bucket": "mobileprogramming-23a1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150260257894:android:7935e5337befa506c089a7",
+        "android_client_info": {
+          "package_name": "com.example.test123"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdfFVYb3sSnX3l9TCzHsl_hbyGNGc96ug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

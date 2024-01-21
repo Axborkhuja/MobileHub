@@ -69,7 +69,7 @@ class CustomCard extends StatelessWidget {
           ),
         ),
         type==null ? Container(
-          height: type == null ? 60 : 40,
+          height: type == null ? 70 : 40,
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             color: type == null

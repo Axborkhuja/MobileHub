@@ -6,14 +6,16 @@ import 'package:test123/Profile/Screen.dart';
 import 'package:test123/Search/Screen.dart';
 
 class BottomBar extends StatefulWidget {
+  final String Useruid;
+  BottomBar({this.Useruid = ""});
   @override
-  _BottomBarState createState() => _BottomBarState();
+  _BottomBarState createState() => _BottomBarState(this.Useruid);
 }
 
 class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 0;
-  PageController _pageController = PageController();
-
+  final PageController _pageController = PageController();
+  _BottomBarState(String Useruid);
   @override
   Widget build(BuildContext context) {
     // String? currentRoute = ModalRoute.of(context)?.settings.name ?? '/';

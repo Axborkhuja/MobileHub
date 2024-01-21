@@ -1,98 +1,121 @@
 import 'package:flutter/material.dart';
-import '../Registration/Screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:test123/components/BottomBar.dart';
 
-void main() {
-  runApp(LoginScreen());
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class LoginScreen extends StatelessWidget {
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  late final String authenthicated;
+  Future<void> _login(BuildContext context) async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      if (userCredential.user?.uid != null) {
+        authenthicated=userCredential.user!.uid;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BottomBar(Useruid: authenthicated),
+          ),
+        );      }
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(''),
+        backgroundColor: Colors.green,
+        action: SnackBarAction(
+          label: 'OK',
+          onPressed: () {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          },
+        ),
+      ));
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Login Failed: ${e.message}'),
+          backgroundColor: Colors.red,
+          action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            },
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
-          child: Padding(
+    Brightness brightness = Theme.of(context).brightness;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Login'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(height: 150),
-                Text(
-                  'LOG IN',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-                SizedBox(height: 100),
+              children: [
                 TextField(
-                  textAlign: TextAlign.center,
+                  controller: _emailController,
                   decoration: InputDecoration(
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(Icons.mail),
+                    labelText: 'Email',
+                    labelStyle: TextStyle(
+                      color: brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.black,
                     ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    hintText: 'Email/Phone number',
                   ),
                 ),
-                SizedBox(height: 10),
                 TextField(
-                  textAlign: TextAlign.center,
+                  controller: _passwordController,
+                  obscureText: true,
                   decoration: InputDecoration(
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(Icons.key),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    hintText: 'Password',
-                  ),
-                ),
-                SizedBox(height: 50),
-                Container(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child:
-                        Text('Log in', style: TextStyle(color: Colors.black)),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(width: 2),
-                      ),
+                    labelText: 'Password',
+                    labelStyle: TextStyle(
+                      color: brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.black,
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
-                Builder(
-                  builder: (context) => TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignUpApp()),
-                      );
-                    },
-                    child:
-                        Text('Sign Up', style: TextStyle(color: Colors.grey)),
-                  ),
-                ),
-                SizedBox(height: 10),
-                TextButton(
-                  onPressed: () {},
-                  child: Text('Use Guest mode',
-                      style: TextStyle(color: Colors.grey)),
+                const SizedBox(height: 16),
+                ElevatedButton.icon(
+                  onPressed: () => _login(context),
+                  icon: Icon(Icons.login),
+                  label: const Text('Sign In'),
                 ),
               ],
             ),
           ),
-        ),
+          GestureDetector(
+            child: Text(
+              "Sign Up",
+              style: TextStyle(
+                decoration: TextDecoration.underline,
+                  fontWeight: FontWeight.bold,
+                  color: brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black),
+            ),
+            onHorizontalDragStart: (details) {
+                Navigator.pushReplacementNamed(context, '/registr');
+              },
+          ),
+        ],
       ),
     );
   }

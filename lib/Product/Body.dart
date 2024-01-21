@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
   final Map<String, dynamic> data;
-
-  Body(this.data);
+  const Body(this.data, {super.key});
 
   @override
   Widget build(BuildContext context) {
+    Brightness brightness = Theme.of(context).brightness;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Stack(
@@ -14,37 +14,37 @@ class Body extends StatelessWidget {
           ListView(
             children: <Widget>[
               Image.network(data['imageUrl'], fit: BoxFit.cover),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Text(
                 data['title'],
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 '\$${data['price']}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
-                  color: Colors.red, // Change the color as needed
+                  color: Colors.red,
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 data['description'],
-                style: TextStyle(fontSize: 16),
+                style: const TextStyle(fontSize: 16),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 data['category'],
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.blue, // Change the color as needed
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
             ],
           ),
           Positioned(
@@ -53,18 +53,18 @@ class Body extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(0.0),
               child: Ink(
-                decoration: ShapeDecoration(
+                decoration: const ShapeDecoration(
                   color: Colors.white,
                   shape: CircleBorder(),
-
                 ),
                 padding: const EdgeInsets.all(8.0),
                 child: IconButton(
                   icon: Icon(Icons.add_shopping_cart_outlined,
-                      size: 40, color: Colors.black),
-                  onPressed: () {
-
-                  },
+                      size: 40,
+                      color: brightness == Brightness.dark
+                          ? Colors.white12
+                          : Colors.black12),
+                  onPressed: () {},
                 ),
               ),
             ),

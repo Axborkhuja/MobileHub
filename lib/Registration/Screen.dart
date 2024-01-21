@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:test123/Login/Screen.dart';
 
 void main() {
-  runApp(SignUpApp());
+  runApp(Registration());
 }
 
-class SignUpApp extends StatelessWidget {
+class Registration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

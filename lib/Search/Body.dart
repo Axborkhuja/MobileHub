@@ -4,7 +4,7 @@ import '../components/Category.dart';
 
 class Body extends StatefulWidget {
   final List<Map<String, dynamic>> data;
-  Body({required this.data});
+  Body({super.key, required this.data});
   @override
   _BodyState createState() => _BodyState(data: data);
 }
@@ -34,7 +34,7 @@ class _BodyState extends State<Body> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 60),
+                const SizedBox(height: 60),
                 CardSection(
                   data: data,
                   title: "",
@@ -56,7 +56,7 @@ class _BodyState extends State<Body> {
                   brightness == Brightness.dark ? Colors.black : Colors.white,
               border: Border.all(color: Colors.white12),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Column(
               children: [
                 Row(
@@ -67,8 +67,8 @@ class _BodyState extends State<Body> {
                           ? Colors.white30
                           : Colors.black38,
                     ),
-                    SizedBox(width: 8),
-                    Expanded(
+                    const SizedBox(width: 8),
+                    const Expanded(
                       child: TextField(
                         decoration: InputDecoration(
                           border: InputBorder.none,
@@ -96,7 +96,7 @@ class _BodyState extends State<Body> {
                         .toList(),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 2,
                 )
               ],

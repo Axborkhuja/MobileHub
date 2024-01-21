@@ -37,7 +37,7 @@ class CardSection extends StatelessWidget {
           mainAxisSpacing: marginBetween?.ceilToDouble() ?? 10.0,
           crossAxisSpacing: marginBetween?.ceilToDouble() ?? 10.0,
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           children: List.generate(
             data.length,
             (index) => GestureDetector(
