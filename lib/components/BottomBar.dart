@@ -7,9 +7,9 @@ import 'package:test123/Search/Screen.dart';
 
 class BottomBar extends StatefulWidget {
   final String Useruid;
-  BottomBar({this.Useruid = ""});
+  const BottomBar({super.key, this.Useruid = ""});
   @override
-  _BottomBarState createState() => _BottomBarState(this.Useruid);
+  _BottomBarState createState() => _BottomBarState(Useruid);
 }
 
 class _BottomBarState extends State<BottomBar> {
@@ -18,7 +18,6 @@ class _BottomBarState extends State<BottomBar> {
   _BottomBarState(String Useruid);
   @override
   Widget build(BuildContext context) {
-    // String? currentRoute = ModalRoute.of(context)?.settings.name ?? '/';
     Brightness brightness = Theme.of(context).brightness;
 
     return Scaffold(
@@ -42,7 +41,7 @@ class _BottomBarState extends State<BottomBar> {
         onTap: (index) {
           _pageController.animateToPage(
             index,
-            duration: Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: 500),
             curve: Curves.easeInOut,
           );
         },
@@ -52,8 +51,8 @@ class _BottomBarState extends State<BottomBar> {
         selectedItemColor: Colors.blue, // Change the color as needed
         unselectedItemColor: Colors.grey, // Change the color as needed
         selectedLabelStyle:
-            TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-        unselectedLabelStyle: TextStyle(fontSize: 12),
+            const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+        unselectedLabelStyle: const TextStyle(fontSize: 12),
         items: [
           BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined,

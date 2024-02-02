@@ -10,7 +10,7 @@ class notLogedBody extends StatelessWidget {
       children: [
         Positioned(
             child: Image.asset(
-          "assets/notLogin.png",
+          brightness==Brightness.dark?"assets/notLoginD.png":"assets/notLogin.png",
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           fit: BoxFit.contain,
@@ -24,14 +24,10 @@ class notLogedBody extends StatelessWidget {
                 margin: const EdgeInsets.all(5.0),
                 width: 350,
 
-                height: 60, // Adjust the height as needed
+                height: 75, // Adjust the height as needed
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(brightness==Brightness.light?'assets/notLogin.png':'assets/notLoginD.png'),
-                    fit: BoxFit.cover,
-                  ),
                   borderRadius: BorderRadius.circular(16),
-                  color:brightness==Brightness.dark? Colors.white10:Colors.black12,
+                  color:brightness==Brightness.dark? Colors.black45:Colors.white54,
                 ),
                 child: GestureDetector(
                   onTap: () {

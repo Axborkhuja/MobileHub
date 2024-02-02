@@ -1,8 +1,53 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
   final Map<String, dynamic> data;
-  const Body(this.data, {super.key});
+  Body(this.data, {super.key});
+
+  final User? user = FirebaseAuth.instance.currentUser;
+
+  void showRemoveConfirmation(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Notification"),
+          content: const Text(
+              "You are not Logined please first login then you can add this product to your favourite"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context); // Close the dialog
+              },
+              child: const Text("Ok"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> userAddFavorite(Map<String, dynamic> newFavorite) async {
+    if (user != null) {
+      DocumentSnapshot<Map<String, dynamic>> userData = await FirebaseFirestore
+          .instance
+          .collection('users')
+          .doc(user?.uid)
+          .get();
+      Map<String, dynamic> userDataMap = userData.data() ?? {};
+      List<Map<String, dynamic>> currentFavorites =
+          List<Map<String, dynamic>>.from(userDataMap['favorites'] ?? []);
+      currentFavorites.add(newFavorite);
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user?.uid)
+          .set({
+        'favorites': currentFavorites,
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +61,7 @@ class Body extends StatelessWidget {
               Image.network(data['imageUrl'], fit: BoxFit.cover),
               const SizedBox(height: 16),
               Text(
-                data['title'],
+                data['name'],
                 style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -24,27 +69,50 @@ class Body extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                '\$${data['price']}',
+                'Price:  \$${data['price']}',
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.red,
                 ),
               ),
               const SizedBox(height: 8),
+              const Text(
+                "Description:  ",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueAccent,
+                ),
+              ),
               Text(
                 data['description'],
-                style: const TextStyle(fontSize: 16),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                data['category'],
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
-                  color: Colors.blue, // Change the color as needed
+                  color: Colors.black87,
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  const Text(
+                    "Categories:  ",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                  Text(
+                    data['category'],
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
           Positioned(
@@ -53,18 +121,26 @@ class Body extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(0.0),
               child: Ink(
-                decoration: const ShapeDecoration(
-                  color: Colors.white,
-                  shape: CircleBorder(),
+                decoration: ShapeDecoration(
+                  color: brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black,
+                  shape: const CircleBorder(),
                 ),
                 padding: const EdgeInsets.all(8.0),
                 child: IconButton(
-                  icon: Icon(Icons.add_shopping_cart_outlined,
+                  icon: Icon(Icons.favorite,
                       size: 40,
                       color: brightness == Brightness.dark
-                          ? Colors.white12
-                          : Colors.black12),
-                  onPressed: () {},
+                          ? Colors.black
+                          : Colors.white),
+                  onPressed: () {
+                    if (user != null) {
+                      userAddFavorite(data);
+                    } else {
+                      showRemoveConfirmation(context);
+                    }
+                  },
                 ),
               ),
             ),

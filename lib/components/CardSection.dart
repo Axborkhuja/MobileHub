@@ -8,8 +8,8 @@ class CardSection extends StatelessWidget {
   final int? marginBetween;
   final String? type;
   final int axisNum;
-  CardSection(
-      {required this.data,this.axisNum=2, required this.title, this.marginBetween, this.type});
+  const CardSection(
+      {super.key, required this.data,this.axisNum=2, required this.title, this.marginBetween, this.type});
 
   @override
   Widget build(BuildContext context) {

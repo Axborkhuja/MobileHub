@@ -5,12 +5,13 @@ class GetProducts extends StatelessWidget {
   final String collectionName;
   final Function(List<Map<String, dynamic>>) buildUI;
 
-  GetProducts({required this.collectionName, required this.buildUI});
+  const GetProducts({super.key, required this.collectionName, required this.buildUI});
 
   Future<List<Map<String, dynamic>>> fetchDataFromFirebase() async {
     try {
       QuerySnapshot<Map<String, dynamic>> querySnapshot =
-          await FirebaseFirestore.instance.collection(collectionName).get();
+          (await FirebaseFirestore.instance.collection(collectionName).get());
+      print(querySnapshot);
       return querySnapshot.docs.map((doc) => doc.data()).toList();
     } catch (error) {
       print('Error fetching data from Firebase: $error');

@@ -3,31 +3,34 @@ import 'package:flutter/material.dart';
 class Category extends StatefulWidget {
   final String categoryName;
   final Function(String) onTap;
+  final String selectedCategory;
 
-  Category({required this.categoryName, required this.onTap});
+  Category({
+    required this.categoryName,
+    required this.onTap,
+    required this.selectedCategory,
+  });
 
   @override
   _CategoryState createState() => _CategoryState();
 }
 
 class _CategoryState extends State<Category> {
-  bool isSelected = false;
-
   @override
   Widget build(BuildContext context) {
+    bool isSelected = widget.categoryName == widget.selectedCategory;
     Brightness brightness = Theme.of(context).brightness;
     bool isDarkTheme = brightness == Brightness.dark;
     return GestureDetector(
       onTap: () {
-        // Toggle the isSelected state and trigger the onTap callback
         setState(() {
           isSelected = !isSelected;
         });
         widget.onTap(widget.categoryName);
       },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 8),
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        margin: const EdgeInsets.symmetric(horizontal: 8),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         decoration: BoxDecoration(
           color: isSelected
               ? isDarkTheme

@@ -1,37 +1,101 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:test123/Login/Screen.dart';
 
-void main() {
-  runApp(Registration());
+class Register extends StatefulWidget {
+  const Register({super.key});
+
+  @override
+  _RegisterState createState() => _RegisterState();
 }
 
-class Registration extends StatelessWidget {
+class _RegisterState extends State<Register> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+
+  Future<void> _register() async {
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: const Text(''),
+        backgroundColor: Colors.green,
+        action: SnackBarAction(
+          label: 'OK',
+          onPressed: () {
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          },
+        ),
+      ));
+      await FirebaseFirestore.instance.collection('users').doc(userCredential.user?.uid).set({
+        'bucket': [],
+        'favorites': [],
+      });
+      Navigator.pushReplacementNamed(context, '/login');
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Login Failed: ${e.message}'),
+          backgroundColor: Colors.red,
+          action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            },
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
+    Brightness brightness = Theme.of(context).brightness;
+    return Scaffold(
+      appBar: AppBar(
+        title: IconButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, '/');
+            },
+            icon: const Icon(
+              Icons.chevron_left,
+              size: 30,
+            )),
+      ),
+      body: GestureDetector(
+        child: Center(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 70),
+                const SizedBox(height: 70),
                 Text(
                   'SIGN UP',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: brightness == Brightness.light
+                        ? Colors.black
+                        : Colors.white,
                   ),
                 ),
-                SizedBox(width: 10, height: 50),
+                const SizedBox(width: 10, height: 20),
                 TextField(
                   textAlign: TextAlign.center,
+                  controller: _nameController,
                   decoration: InputDecoration(
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    prefixIcon: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Icon(Icons.person),
                     ),
                     border: OutlineInputBorder(
@@ -40,26 +104,28 @@ class Registration extends StatelessWidget {
                     hintText: 'Name',
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextField(
                   textAlign: TextAlign.center,
+                  controller: _emailController,
                   decoration: InputDecoration(
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    prefixIcon: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Icon(Icons.mail),
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    hintText: 'Email/Phone number',
+                    hintText: 'Email',
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextField(
                   textAlign: TextAlign.center,
+                  controller: _passwordController,
                   decoration: InputDecoration(
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    prefixIcon: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Icon(Icons.key),
                     ),
                     border: OutlineInputBorder(
@@ -68,59 +134,64 @@ class Registration extends StatelessWidget {
                     hintText: 'Password',
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextField(
+                  controller: _confirmPasswordController,
                   obscureText: true,
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    prefixIcon: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Icon(Icons.remove_red_eye),
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
-                    hintText: ' Confirm Password',
+                    hintText: 'Confirm Password',
                   ),
                 ),
-                SizedBox(height: 50),
-                Container(
-                  width: double.infinity, // <-- Button width here
+                const SizedBox(height: 50),
+                SizedBox(
+                  width: 300, // <-- Button width here
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child:
-                        Text('Sign up', style: TextStyle(color: Colors.black)),
+                    onPressed: () async {
+                      await _register();
+                    },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: brightness == Brightness.dark
+                          ? Colors.black
+                          : Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
-                        side: BorderSide(width: 2),
+                        side: BorderSide(
+                            width: 2,
+                            color: brightness == Brightness.dark
+                                ? Colors.white
+                                : Colors.black),
                       ),
                     ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text('Registration',
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: brightness == Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black)),
+                    ),
                   ),
-                ),
-                SizedBox(height: 20),
-                Builder(
-                  builder: (context) => TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      );
-                    },
-                    child: Text('Log In', style: TextStyle(color: Colors.grey)),
-                  ),
-                ),
-                SizedBox(height: 10),
-                TextButton(
-                  onPressed: () {},
-                  child: Text('Use Guest mode',
-                      style: TextStyle(color: Colors.grey)),
                 ),
               ],
             ),
           ),
         ),
+        onHorizontalDragUpdate: (details) {
+          if (details.primaryDelta != null) {
+            if (details.primaryDelta! > 0) {
+              Navigator.pushReplacementNamed(context, '/login');
+            }
+          }
+        },
       ),
     );
   }

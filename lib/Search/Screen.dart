@@ -3,6 +3,8 @@ import '../CRUD/getProducts.dart';
 import './Body.dart';
 
 class SearchScreen extends StatelessWidget {
+  const SearchScreen({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -10,12 +12,7 @@ class SearchScreen extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: 0,
       ),
-      body: GetProducts(
-        collectionName: 'products',
-        buildUI: (List<Map<String, dynamic>> data) {
-          return Body(data: data);
-        },
-      ),
+      body: const Body(),
     );
   }
 }

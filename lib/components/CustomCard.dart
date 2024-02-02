@@ -12,7 +12,6 @@ class CustomCard extends StatelessWidget {
     return Card(
       margin: EdgeInsets.all(5),
       child: Container(
-        height: type == null ? 300 : 10,
         width: type == null ? 200 : 10,
         child: _buildCard(),
       ),
@@ -43,19 +42,16 @@ class CustomCard extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 color: brightness != Brightness.dark
-                    ? Colors.white38
-                    : Colors.black12,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                ),
+                    ? Colors.white.withOpacity(0.3)
+                    : Colors.black.withOpacity(0.3),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    data['title'],
+                    data['name'],
                     style: TextStyle(
+                      overflow: TextOverflow.ellipsis,
                       color: brightness != Brightness.light
                           ? Colors.white
                           : Colors.black,
@@ -69,7 +65,7 @@ class CustomCard extends StatelessWidget {
           ),
         ),
         type==null ? Container(
-          height: type == null ? 70 : 40,
+          // height: type == null ? 85 : 40,
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             color: type == null
@@ -86,8 +82,9 @@ class CustomCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                data['title'],
+                data['name'],
                 style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
                   color: brightness != Brightness.light
                       ? Colors.white
                       : Colors.black,
@@ -96,17 +93,21 @@ class CustomCard extends StatelessWidget {
                 ),
               ),
               if (type == null) ...[
-                SizedBox(
-                  height: 5,
+                const SizedBox(
+                  height: 2,
                 ),
-                Text(
-                  data['description'],
-                  style: TextStyle(
-                      color: brightness != Brightness.light
-                          ? Colors.white
-                          : Colors.black,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 6),
+                Container(
+                  alignment: Alignment.topRight,
+                  child: Text(
+                    data['price']+"\$",
+                    style: TextStyle(
+                        color: brightness != Brightness.light
+                            ? Colors.white
+                            : Colors.black,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15),
+
+                  ),
                 ),
               ],
             ],

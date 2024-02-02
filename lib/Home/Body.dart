@@ -6,16 +6,14 @@ import '../components/CardSection.dart';
 class Body extends StatefulWidget {
   final List<Map<String, dynamic>> data;
 
-  Body({ required this.data});
+  const Body({super.key,  required this.data});
 
   @override
-  _BodyState createState() => _BodyState( data: data);
+  _BodyState createState() => _BodyState( );
 }
 
 class _BodyState extends State<Body> {
   int _currentIndex = 0;
-  final List<Map<String, dynamic>> data;
-  _BodyState({required this.data});
   @override
   Widget build(BuildContext context) {
     Brightness brightness = Theme.of(context).brightness;
@@ -42,7 +40,7 @@ class _BodyState extends State<Body> {
                         backgroundBlendMode: BlendMode.colorBurn,
                         borderRadius: BorderRadius.circular(0.0),
                         image: DecorationImage(
-                          image: NetworkImage(url),
+                          image: NetworkImage(url!),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -55,7 +53,7 @@ class _BodyState extends State<Body> {
                     aspectRatio: 16 / 9,
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: Duration(milliseconds: 1000),
+                    autoPlayAnimationDuration: const Duration(milliseconds: 1000),
                     viewportFraction: 1,
                     onPageChanged: (index, reason) {
                       setState(() {
@@ -83,13 +81,13 @@ class _BodyState extends State<Body> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 36,
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Center(
-                child: CardSection(data: data, title: "Popular"),
+                child: CardSection(data: widget.data, title: "Popular"),
               ),
             ),
           ],

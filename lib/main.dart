@@ -25,7 +25,7 @@ void main() async {
   runApp(
     ChangeNotifierProvider(
       create: (context) => AuthProvider(),
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
         '/bucket': (context) => BucketScreen(),
         '/profile': (context) => const ProfileScreens(),
         '/login':(context) => const LoginScreen(),
-        '/register':(context) => Registration(),
+        '/register':(context) => const Register(),
       },
       initialRoute: '/',
       home:BottomBar(),
